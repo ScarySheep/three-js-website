@@ -5,6 +5,8 @@ import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 
+import blenderModelFile from './resources/faceless.glb?url'
+
 const scene = new THREE.Scene()
 
 //set up camera
@@ -52,7 +54,7 @@ const loader = new GLTFLoader()
 let mixer
 let blenderModel
 const clock = new THREE.Clock();
-loader.load('resources/faceless.glb', function (gltf) {
+loader.load(blenderModelFile, function (gltf) {
 
   blenderModel = gltf.scene
   scene.add(blenderModel)
