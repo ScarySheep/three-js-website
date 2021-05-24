@@ -211,19 +211,25 @@ scene.add(lava);
 
 let speed = 0
 let animationStart = false
+let click = document.getElementById("click")
 
 window.ontouchstart = function () {
   if (!animationStart) {
+    click.textContent = "Click"
+    click.style.display = "none"
     speed = 0
     animationStart = true
   } else {
-    animationStart = false
-    lavaShaderUniforms['clippingZ'].value = -33
-    lavaShaderUniforms['time'].value = 1
+    if (lavaShaderUniforms['clippingZ'].value <= 15) {
+      click.style.display = "block"
+      animationStart = false
+      lavaShaderUniforms['clippingZ'].value = 33
+      lavaShaderUniforms['time'].value = 1
+    }
   }
 }
 
-let click = document.getElementById("click")
+
 window.onmousedown = function () {
   if (!animationStart) {
     click.textContent = "Click"
@@ -253,7 +259,7 @@ function animate () {
     mixer.update(delta);*/
 
   eyeShaderUniforms['time'].value += 2 * delta;
-  sphereShaderUniforms['time'].value -= 0.1 * delta;
+  sphereShaderUniforms['time'].value -= 0.3 * delta;
   lavaShaderUniforms['time'].value += 1 * delta;
   //controls.update()
   speed += 1
@@ -266,7 +272,6 @@ function animate () {
       }
     }
   }
-
 
   renderer.render(scene, camera)
   if (1 / delta < 30) {
