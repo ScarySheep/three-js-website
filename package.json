@@ -10,6 +10,9 @@
     "vite": "^2.3.3"
   },
   "dependencies": {
+    "glsl-fractal-brownian-noise": "^1.1.0",
+    "glsl-noise": "0.0.0",
+    "glslify": "^7.1.1",
     "three": "^0.128.0"
   }
 }
